@@ -1,0 +1,37 @@
+
+server:
+  port: 8093
+  servlet:
+    session:
+      timeout: 30m #30分钟，测试的话时间不能太短，否则不准。m是分钟单位，s是秒的单位，h是小时的单位，不写单位的话默认是毫秒
+
+
+#springcloud识别服务
+spring:
+    application:
+        name: lepus
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/lepus?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+        username: root
+        password: P@ss12345
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
+
+
+mybatis:
+    #配置mapper xml文件所在路径
+    mapper-locations: classpath:com/catty/lepus/mapper/*Mapper.xml
+    type-aliases-package: com.catty.lepus.entity
+    configuration:
+        mapUnderscoreToCamelCase: true
+
+logging:
+    level:
+        com.catty.lepus.dao: debug #打印sq
+
+map:
+    local:
+        env: 测试环境
+

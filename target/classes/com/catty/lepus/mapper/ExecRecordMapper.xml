@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.catty.lepus.dao.ExecRecordMapper">
+  <resultMap id="BaseResultMap" type="com.catty.lepus.entity.ExecRecord">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="case_id" jdbcType="BIGINT" property="caseId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="env" jdbcType="INTEGER" property="env" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="pass_count" jdbcType="INTEGER" property="passCount" />
+    <result column="total_count" jdbcType="INTEGER" property="totalCount" />
+    <result column="success_count" jdbcType="INTEGER" property="successCount" />
+    <result column="ignore_count" jdbcType="INTEGER" property="ignoreCount" />
+    <result column="block_count" jdbcType="INTEGER" property="blockCount" />
+    <result column="fail_count" jdbcType="INTEGER" property="failCount" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="executors" jdbcType="VARCHAR" property="executors" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="choose_content" jdbcType="VARCHAR" property="chooseContent" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="expect_start_time" jdbcType="TIMESTAMP" property="expectStartTime" />
+    <result column="expect_end_time" jdbcType="TIMESTAMP" property="expectEndTime" />
+    <result column="actual_start_time" jdbcType="TIMESTAMP" property="actualStartTime" />
+    <result column="actual_end_time" jdbcType="TIMESTAMP" property="actualEndTime" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.catty.lepus.entity.ExecRecord">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="case_content" jdbcType="LONGVARCHAR" property="caseContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, case_id, title, env, is_delete, pass_count, total_count, success_count, ignore_count, 
+    block_count, fail_count, creator, modifier, executors, description, choose_content, 
+    gmt_created, gmt_modified, expect_start_time, expect_end_time, actual_start_time, 
+    actual_end_time, owner
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    case_content
+  </sql>
+</mapper>

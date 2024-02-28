@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--配置table表信息内容提，targetRuntime指定采用Mybatis3的版本-->
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="[e|E]xample$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+
+        <!-- 整合lombok-->
+        <!--<plugin type="com.chrm.mybatis.generator.plugins.LombokPlugin">-->
+        <!--<property name="hasLombok" value="true"/>-->
+        <!--</plugin>-->
+
+        <!--<commentGenerator>-->
+        <!--<property name="suppressDate" value="false"/>-->
+        <!--&lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;-->
+        <!--<property name="suppressAllComments" value="false"/>-->
+        <!--&lt;!&ndash; 生成的Java文件的编码格式 &ndash;&gt;-->
+        <!--<property name="javaFileEncoding" value="utf-8"/>-->
+        <!--&lt;!&ndash; 格式化java代码&ndash;&gt;-->
+        <!--<property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>-->
+        <!--&lt;!&ndash; 格式化XML代码&ndash;&gt;-->
+        <!--<property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>-->
+        <!--</commentGenerator>-->
+
+        <!--Dao类继承MySqlExtensionMapper父类-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.catty.lepus.common.MySqlExtensionMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/lepus?AllowMultiQueries=true&amp;useUnicode=truecharacterEncoding=utf-8&amp;serverTimeZone=Asia/Shanghai"
+                        userId="root"
+                        password="P@ss12345">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成model实体类：包名(targetPackage)、位置(targetProject) -->
+        <javaModelGenerator targetPackage="com.catty.lepus.entity"
+                            targetProject="src/main/java/">
+            <!--&lt;!&ndash; 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false &ndash;&gt;-->
+            <!--<property name="enableSubPackages" value="true"/>-->
+            <!--&lt;!&ndash; 设置是否在getter方法中，对String类型字段调用trim()方法&ndash;&gt;-->
+            <!--<property name="trimStrings" value="true"/>-->
+            <property name="rootClass" value="com.catty.lepus.entity.BaseEntityNew"/>
+        </javaModelGenerator>
+
+
+        <!-- 生成Mybatis的Mapper.xml映射文件：包名(targetPackage)、位置(targetProject)-->
+        <sqlMapGenerator targetPackage="com.catty.lepus.mapper"
+                         targetProject="src/main/resources/">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成Mybatis的mapper(DAO)接口类, 总共3种：ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.catty.lepus.dao"
+                             targetProject="src/main/java/">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--表名称配置及表的约束，涉及的表都需要配置,目前配置9张表-->
+        <!--<table schema="lepus" tableName="user" domainObjectName="User" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table schema="lepus" tableName="case_backup" domainObjectName="CaseBackup" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table schema="lepus" tableName="exec_record" domainObjectName="ExecRecord" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <table schema="lepus" tableName="test_case" domainObjectName="TestCase" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+        <!--<table schema="lepus" tableName="biz" domainObjectName="Biz" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table schema="lepus" tableName="authority" domainObjectName="Authority" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table schema="lepus" tableName="test_task" domainObjectName="TestTask" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table schema="lepus" tableName="test_task_case_rel" domainObjectName="TestTaskCaseRel"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table schema="lepus" tableName="test_case_group" domainObjectName="TestCaseGroup"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+    </context>
+</generatorConfiguration>

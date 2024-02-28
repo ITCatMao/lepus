@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.catty.lepus.dao.TestCaseGroupMapper">
+  <resultMap id="BaseResultMap" type="com.catty.lepus.entity.TestCaseGroup">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="group_id" jdbcType="BIGINT" property="groupId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="extra" jdbcType="VARCHAR" property="extra" />
+    <result column="product_line_id" jdbcType="BIGINT" property="productLineId" />
+    <result column="case_type" jdbcType="INTEGER" property="caseType" />
+    <result column="module_node_id" jdbcType="BIGINT" property="moduleNodeId" />
+    <result column="requirement_id" jdbcType="VARCHAR" property="requirementId" />
+    <result column="smk_case_id" jdbcType="BIGINT" property="smkCaseId" />
+    <result column="channel" jdbcType="INTEGER" property="channel" />
+    <result column="biz_id" jdbcType="VARCHAR" property="bizId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.catty.lepus.entity.TestCaseGroup">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="case_content" jdbcType="LONGVARCHAR" property="caseContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, group_id, title, description, is_delete, creator, modifier, gmt_created, gmt_modified, 
+    extra, product_line_id, case_type, module_node_id, requirement_id, smk_case_id, channel, 
+    biz_id
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    case_content
+  </sql>
+</mapper>

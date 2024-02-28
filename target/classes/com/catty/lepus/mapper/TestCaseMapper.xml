@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.catty.lepus.dao.TestCaseMapper">
+  <resultMap id="BaseResultMap" type="com.catty.lepus.entity.TestCase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="group_id" jdbcType="BIGINT" property="groupId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="extra" jdbcType="VARCHAR" property="extra" />
+    <result column="product_line_id" jdbcType="BIGINT" property="productLineId" />
+    <result column="case_type" jdbcType="INTEGER" property="caseType" />
+    <result column="module_node_id" jdbcType="BIGINT" property="moduleNodeId" />
+    <result column="requirement_id" jdbcType="VARCHAR" property="requirementId" />
+    <result column="smk_case_id" jdbcType="BIGINT" property="smkCaseId" />
+    <result column="channel" jdbcType="INTEGER" property="channel" />
+    <result column="biz_id" jdbcType="VARCHAR" property="bizId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.catty.lepus.entity.TestCase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="case_content" jdbcType="LONGVARCHAR" property="caseContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, group_id, title, description, is_delete, creator, modifier, gmt_created, gmt_modified, 
+    extra, product_line_id, case_type, module_node_id, requirement_id, smk_case_id, channel, 
+    biz_id
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    case_content
+  </sql>
+
+  <!--&amp;lt;insert id="insert" parameterType="com.xiaoju.framework.entity.persistent.TestCase"&amp;gt;-->
+    <!--&amp;lt;selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id"&amp;gt;-->
+      <!--SELECT LAST_INSERT_ID() AS id-->
+    <!--&amp;lt;/selectKey&amp;gt;-->
+    <!--insert into test_case-->
+    <!--&amp;lt;trim prefix="(" suffix=")" suffixOverrides=","&amp;gt;-->
+      <!--&amp;lt;if test="id != null"&amp;gt;-->
+        <!--id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="groupId != null"&amp;gt;-->
+        <!--group_id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="title != null"&amp;gt;-->
+        <!--title,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="description != null"&amp;gt;-->
+        <!--description,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="isDelete != null"&amp;gt;-->
+        <!--is_delete,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="creator != null"&amp;gt;-->
+        <!--creator,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="modifier != null"&amp;gt;-->
+        <!--modifier,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="gmtCreated != null"&amp;gt;-->
+        <!--gmt_created,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="gmtModified != null"&amp;gt;-->
+        <!--gmt_modified,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="extra != null"&amp;gt;-->
+        <!--extra,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="productLineId != null"&amp;gt;-->
+        <!--product_line_id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="caseType != null"&amp;gt;-->
+        <!--case_type,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="moduleNodeId != null"&amp;gt;-->
+        <!--module_node_id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="requirementId != null"&amp;gt;-->
+        <!--requirement_id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="smkCaseId != null"&amp;gt;-->
+        <!--smk_case_id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="caseContent != null"&amp;gt;-->
+        <!--case_content,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="channel != null"&amp;gt;-->
+        <!--channel,-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="bizId != null"&amp;gt;-->
+        <!--biz_id,-->
+      <!--&amp;lt;/if&amp;gt;-->
+    <!--&amp;lt;/trim&amp;gt;-->
+    <!--&amp;lt;trim prefix="values (" suffix=")" suffixOverrides=","&amp;gt;-->
+      <!--&amp;lt;if test="id != null"&amp;gt;-->
+        <!--#{id,jdbcType=BIGINT},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="groupId != null"&amp;gt;-->
+        <!--#{groupId,jdbcType=BIGINT},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="title != null"&amp;gt;-->
+        <!--#{title,jdbcType=VARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="description != null"&amp;gt;-->
+        <!--#{description,jdbcType=VARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="isDelete != null"&amp;gt;-->
+        <!--#{isDelete,jdbcType=INTEGER},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="creator != null"&amp;gt;-->
+        <!--#{creator,jdbcType=VARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="modifier != null"&amp;gt;-->
+        <!--#{modifier,jdbcType=VARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="gmtCreated != null"&amp;gt;-->
+        <!--#{gmtCreated,jdbcType=TIMESTAMP},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="gmtModified != null"&amp;gt;-->
+        <!--#{gmtModified,jdbcType=TIMESTAMP},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="extra != null"&amp;gt;-->
+        <!--#{extra,jdbcType=VARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="productLineId != null"&amp;gt;-->
+        <!--#{productLineId,jdbcType=BIGINT},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="caseType != null"&amp;gt;-->
+        <!--#{caseType,jdbcType=INTEGER},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="moduleNodeId != null"&amp;gt;-->
+        <!--#{moduleNodeId,jdbcType=BIGINT},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="requirementId != null"&amp;gt;-->
+        <!--#{requirementId,jdbcType=BIGINT},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="smkCaseId != null"&amp;gt;-->
+        <!--#{smkCaseId,jdbcType=BIGINT},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="caseContent != null"&amp;gt;-->
+        <!--#{caseContent,jdbcType=LONGVARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="channel != null"&amp;gt;-->
+        <!--#{channel,jdbcType=INTEGER},-->
+      <!--&amp;lt;/if&amp;gt;-->
+      <!--&amp;lt;if test="bizId != null"&amp;gt;-->
+        <!--#{bizId,jdbcType=VARCHAR},-->
+      <!--&amp;lt;/if&amp;gt;-->
+    <!--&amp;lt;/trim&amp;gt;-->
+  <!--&amp;lt;/insert&amp;gt;-->
+
+  <!--&amp;lt;select id="selectOne" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs"&amp;gt;-->
+    <!--select-->
+    <!--&amp;lt;include refid="Base_Column_List" /&amp;gt; , &amp;lt;include refid="Blob_Column_List" /&amp;gt;-->
+    <!--from test_case-->
+    <!--where id = #{id}-->
+  <!--&amp;lt;/select&amp;gt;-->
+  <!--&amp;lt;select id="findCaseIdsInBiz" resultType="String"&amp;gt;-->
+    <!--select id from test_case-->
+    <!--where is_delete = 0 and product_line_id = #{productLineId} and case_type = 0 and channel = #{channel}-->
+  <!--&amp;lt;/select&amp;gt;-->
+</mapper>
