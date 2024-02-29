@@ -45,17 +45,20 @@ public class DirController {
      */
     @ApiOperation(value = "选中父节点，增加其下的文件夹", notes = "文件夹")
     @PostMapping(value = "/add")
-    public ResultDto addDir(HttpServletRequest servletRequest, @RequestBody DirCreateDto request) {
-        request.validate();
-        TokenDto tokenDto = tokenDb.getTokenDto(servletRequest.getHeader(UserConstants.LOGIN_TOKEN));
+    public ResultDto addDir(HttpServletRequest request, @RequestBody DirCreateDto dirDto) {
+        dirDto.validate();
+        TokenDto tokenDto = tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN));
+        log.info("tokenDb==" + tokenDb+";"+"tokenDb.getTokenDto=="+tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN)));
+        Integer userId = tokenDto.getUserId();
+        log.info("userId:" + userId);
         try {
-            return ResultDto.success("文件夹添加成功", dirService.addDir(request, tokenDto.getUserId()));
+            return ResultDto.success("文件夹添加成功", dirService.addDir(dirDto, userId));
         } catch (ResultException e) {
             throw new ResultException(e.getLocalizedMessage(), StatusCode.SERVICE_RUN_SUCCESS);
         } catch (Exception e) {
-            log.error("[Dir add]Add dir failed. params={} e={} ", request.toString(), e.getMessage());
+            log.error("[Dir add]Add dir failed. params={} e={} ", dirDto.toString(), e.getMessage());
             e.printStackTrace();
-            return ResultDto.fail("添加文件夹失败", request);
+            return ResultDto.fail("添加文件夹失败", dirDto);
         }
     }
 

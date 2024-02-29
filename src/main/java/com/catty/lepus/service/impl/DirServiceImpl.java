@@ -59,6 +59,24 @@ public class DirServiceImpl implements DirService {
         bizMapper.updateContent(request.getProductLineId(), JSONObject.toJSONString(root), request.getChannel());
         return root;
     }
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public DirNodeDto addDir(DirCreateDto request) {
+        DirNodeDto root = getDirTree(request.getProductLineId(), request.getChannel());
+        checkNodeExists(request.getText(), request.getParentId(), root);
+        DirNodeDto dir = getDir(request.getParentId(), root);
+        if (dir == null) {
+            throw new ResultException("目录节点获取为空", StatusCode.INTERNAL_ERROR);
+        }
+        List<DirNodeDto> children = dir.getChildren();
+        DirNodeDto newDir = new DirNodeDto();
+        newDir.setId(UUID.randomUUID().toString().substring(0, 8));
+        newDir.setText(request.getText());
+        newDir.setParentId(dir.getId());
+        children.add(newDir);
+        bizMapper.updateContent(request.getProductLineId(), JSONObject.toJSONString(root), request.getChannel());
+        return root;
+    }
 
     /**
      * 查询文件树
@@ -91,6 +109,42 @@ public class DirServiceImpl implements DirService {
         DirNodeDto child = new DirNodeDto();
         child.setId("-1");
         child.setCreateUserId(createUserId);
+        child.setParentId(root.getId());
+        child.setText("未分类用例集");
+        child.setCaseIds(ids);
+        root.getChildren().add(child);
+
+        Biz biz = new Biz();
+        biz.setProductLineId(productLineId);
+        biz.setChannel(channel);
+        biz.setContent(JSONObject.toJSONString(root));
+        bizMapper.insert(biz);
+        root.getCaseIds().addAll(child.getCaseIds());
+        return root;
+    }
+    @Override
+    public DirNodeDto getDirTree(Long productLineId, Integer channel) {
+        Biz dbBiz = null;
+        try {
+            dbBiz = bizMapper.selectOne(productLineId, channel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("根据productLindId获取biz失败", e.getMessage());
+        }
+        // 如果有，那么就直接返回
+        if (dbBiz != null) {
+            return JSONObject.parseObject(dbBiz.getContent(), DirNodeDto.class);
+        }
+
+        // 如果没有，则会自动生成root
+        DirNodeDto root = new DirNodeDto();
+        root.setId("root");
+        root.setText("主文件夹");
+
+        Set<String> ids = caseMapper.findCaseIdsInBiz(productLineId, channel);
+
+        DirNodeDto child = new DirNodeDto();
+        child.setId("-1");
         child.setParentId(root.getId());
         child.setText("未分类用例集");
         child.setCaseIds(ids);

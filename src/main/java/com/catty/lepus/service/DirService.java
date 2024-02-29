@@ -13,12 +13,14 @@ import com.catty.lepus.dto.dir.DirNodeDto;
 public interface DirService {
 
     /**
+     * @return com.catty.lepus.dto.dir.DirNodeDto
      * @Description 增加文件夹
      * @Date 22:30 2024/2/26
      * @Param [request, createUserId]
-     * @return com.catty.lepus.dto.dir.DirNodeDto
      **/
     DirNodeDto addDir(DirCreateDto request, Integer createUserId);
+
+    DirNodeDto addDir(DirCreateDto request);
 
     /**
      * 查询文件树
@@ -28,6 +30,8 @@ public interface DirService {
      * @return 树
      */
     DirNodeDto getDirTree(Long productLineId, Integer channel, Integer createUserId);
+
+    DirNodeDto getDirTree(Long productLineId, Integer channel);
 
 
     /**

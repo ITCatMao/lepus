@@ -16,7 +16,6 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=677 DEFAULT CHARSET=utf8 COMMENT='用户信息';
 
-
 -- ----------------------------
 -- 创建case_backup
 -- ----------------------------
@@ -69,6 +68,11 @@ CREATE TABLE `exec_record` (
   KEY `idx_caseId_isdelete` (`case_id`,`is_delete`)
 ) ENGINE=InnoDB AUTO_INCREMENT=898 DEFAULT CHARSET=utf8mb3 COMMENT='用例执行记录';
 
+## 操作记录字段增加失败、阻塞、忽略字段
+alter table exec_record
+    add column fail_count int(10) default 0 not null comment '失败个数' after success_count,
+    add column block_count int(10) default 0 not null comment '阻塞个数' after success_count,
+    add column ignore_count int(10) default 0 not null comment '不执行个数' after success_count;
 
 -- ----------------------------
 -- 创建test_case
@@ -90,6 +94,8 @@ CREATE TABLE test_case (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6329 DEFAULT CHARSET=utf8mb4 COMMENT='测试用例信息';
 
+
+#alter table test_case add column biz_id varchar(500) default '-1' not null comment '关联的文件夹id';
 
 -- DROP TABLE IF EXISTS `test_case`;
 -- CREATE TABLE `test_case` (
@@ -132,8 +138,8 @@ CREATE TABLE `biz` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='文件夹';
 
-INSERT INTO TABLE 'biz' (id,product_line_id,content,channel,is_delete,gmt_create,gmt_modified)
-VALUES (1,0,'ops',0,0, , );
+#INSERT INTO TABLE 'biz' (id,product_line_id,content,channel,is_delete,gmt_create,gmt_modified)
+#VALUES (1,0,'ops',0,0, , );
 -- ----------------------------
 -- 创建authority
 -- ----------------------------
@@ -147,7 +153,9 @@ CREATE TABLE `authority` (
   `gmt_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COMMENT='权限信息';
-
+INSERT INTO `authority` (id,authority_name,authority_desc,authority_content) VALUES (1, 'ROLE_USER', '普通用户', '/api/dir/list,/api/record/list,/api/record/getRecordInfo,/api/user/**,/api/case/list*');
+INSERT INTO `authority` (id,authority_name,authority_desc,authority_content) VALUES (2, 'ROLE_ADMIN', '管理员', '/api/dir/list,/api/backup/**,/api/record/**,/api/file/**,/api/user/**,/api/case/**');
+INSERT INTO `authority` (id,authority_name,authority_desc,authority_content) VALUES (3, 'ROLE_SA', '超级管理员','/api/**');
 
 -- ----------------------------
 -- 创建test_task
