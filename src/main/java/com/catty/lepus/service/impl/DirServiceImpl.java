@@ -43,7 +43,7 @@ public class DirServiceImpl implements DirService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public DirNodeDto addDir(DirCreateDto request, Integer createUserId) {
-        DirNodeDto root = getDirTree(request.getProductLineId(), request.getChannel(), createUserId);
+        DirNodeDto root = getDirTree(request.getProductLineId(), request.getChannel());
         checkNodeExists(request.getText(), request.getParentId(), root);
         DirNodeDto dir = getDir(request.getParentId(), root);
         if (dir == null) {

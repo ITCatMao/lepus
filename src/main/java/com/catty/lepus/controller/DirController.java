@@ -49,7 +49,8 @@ public class DirController {
         log.info("///////////////////////////" + request.getHeader(UserConstants.LOGIN_TOKEN));
         dirDto.validate();
         TokenDto tokenDto = tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN));
-        log.info("tokenDb==" + request.getHeader(UserConstants.LOGIN_TOKEN) + ";\n" + "tokenDb.getTokenDto==" + tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN)));
+        log.info("tokenDb==" + request.getHeader(UserConstants.LOGIN_TOKEN));
+        log.info("tokenDb.getTokenDto==" + tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN)));
         Integer userId = tokenDto.getUserId();
         log.info("userId:" + userId);
         try {

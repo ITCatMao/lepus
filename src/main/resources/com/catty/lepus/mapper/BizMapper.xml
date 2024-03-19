@@ -20,14 +20,13 @@
         content
     </sql>
 
-    <!--<select id="selectOne" resultMap="ResultMapWithBLOBs">-->
-        <!--select-->
-        <!--<include refid="Base_Column_List"/>-->
-        <!--,-->
-        <!--<include refid="Blob_Column_List"/>-->
-        <!--from biz where product_line_id = #{productLineId, jdbcType=BIGINT} and is_delete=0 and channel =-->
-        <!--#{channel, jdbcType=INTEGER};-->
-    <!--</select>-->
+    <select id="selectOne" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from biz where product_line_id = #{productLineId, jdbcType=BIGINT} and is_delete=0 and channel = #{channel, jdbcType=INTEGER};
+    </select>
 
     <update id="updateContent">
     update biz
