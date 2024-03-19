@@ -2,6 +2,7 @@ package com.catty.lepus.common;
 
 import com.catty.lepus.dto.TokenDto;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -25,11 +26,8 @@ public class TokenDb {
     }
 
     public TokenDto getTokenDto(String token) {
-//        if (Objects.isNull(token)) {
-//            return new TokenDto();
-//        }
 
-        if (StringUtils.isEmpty(token)) {
+        if (ObjectUtils.isEmpty(token)) {
             return new TokenDto();
         }
 
