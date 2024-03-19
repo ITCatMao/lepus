@@ -88,9 +88,9 @@ public class UserServiceImpl implements UserService {
         }
         //3.若存在，则创建Token对象，生成token并将相关信息存入TokenDto
         Token token = new Token();
-        token.setToken(mdPWD);
-        token.setExpireTime(new Date(new Date().getTime() + 6000000));
         String tokenStr = DigestUtils.md5DigestAsHex((System.currentTimeMillis() + userName + passWord).getBytes());
+        token.setToken(tokenStr);
+        token.setExpireTime(new Date(new Date().getTime() + 6000000));
 
         TokenDto tokenDto = new TokenDto();
         tokenDto.setUserId(resultUser.getId());

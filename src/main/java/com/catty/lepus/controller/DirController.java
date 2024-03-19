@@ -46,9 +46,10 @@ public class DirController {
     @ApiOperation(value = "选中父节点，增加其下的文件夹", notes = "文件夹")
     @PostMapping(value = "/add")
     public ResultDto addDir(HttpServletRequest request, @RequestBody DirCreateDto dirDto) {
+        log.info("///////////////////////////" + request.getHeader(UserConstants.LOGIN_TOKEN));
         dirDto.validate();
         TokenDto tokenDto = tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN));
-        log.info("tokenDb==" + tokenDb+";"+"tokenDb.getTokenDto=="+tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN)));
+        log.info("tokenDb==" + request.getHeader(UserConstants.LOGIN_TOKEN) + ";\n" + "tokenDb.getTokenDto==" + tokenDb.getTokenDto(request.getHeader(UserConstants.LOGIN_TOKEN)));
         Integer userId = tokenDto.getUserId();
         log.info("userId:" + userId);
         try {

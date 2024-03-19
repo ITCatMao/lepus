@@ -25,13 +25,13 @@ public class TokenDb {
     }
 
     public TokenDto getTokenDto(String token) {
-        if(token==null){
-            return new TokenDto();
-        }
-
-//        if (StringUtils.isEmpty(token)) {
+//        if (Objects.isNull(token)) {
 //            return new TokenDto();
 //        }
+
+        if (StringUtils.isEmpty(token)) {
+            return new TokenDto();
+        }
 
         return tokenMap.get(token);
     }
